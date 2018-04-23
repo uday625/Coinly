@@ -1,17 +1,48 @@
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+
+
 <h2 align="center"> WELCOME TO RESULTS PAGE</h2>
-
-<table border="1" align="center">
-    <tr>
-        <th>BTC Price</th>
-        <th>ETH Price</th>
-        <th>USD Price</th>
-    </tr>
-    <tr>
-        <td><%= results["BTC"] %></td>
-        <td><%= results["ETH"] %> </td>
-        <td><%= results["USD"] %> </td>
-    </tr>
-
-</table>
-
-<a href="/">Search Again</a>
+<div class="ui twelve wide centered grid">
+    <div class="ui containder">
+        <table class="ui very compact table">
+          <thead>
+            <tr>
+                <th>Project</th>
+                <th>Symbol</th>
+                <th>BTC ICO Price</th>
+                <th>ETH ICO Price</th>
+                <th>USD ICO Price</th>
+                <th>BTC Current Price</th>
+                <th>ETH Current Price</th>
+                <th>USD Current Price</th>
+                <th>BTC Return</th>
+                <th>ETH Return</th>
+                <th>USD Return</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+        <% coinDetails.forEach(function(coin){ %>    
+          
+                <tr>
+                    <td><%= coin.coinName %></td>
+                    <td><%= coin.coinSym %></td>
+                    <td><%= coin.icobtcValue %></td>
+                    <td><%= coin.icoethValue %></td>
+                    <td><%= coin.icousdValue %></td>
+                    <td><%= coin.btcValue %></td>
+                    <td><%= coin.ethValue %> </td>
+                    <td><%= coin.usdValue %> </td>
+                    <td><%= (coin.btcValue/coin.icobtcValue).toFixed(2) %>X </td>
+                    <td><%= (coin.ethValue/coin.icoethValue).toFixed(2) %>X </td>
+                    <td><%= (coin.usdValue/coin.icousdValue).toFixed(2) %>X </td>
+                </tr>
+        
+        <%})%>
+            </tbody>
+        </table>
+    
+    <a href="/">Search Again</a>
+    </div>
+</div>
