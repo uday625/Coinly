@@ -1,0 +1,57 @@
+<% include partials/header %>
+
+        <div class="ui sixteen wide centered grid">
+            <div class="two wide column"></div>
+
+            <div class="twelve wide column">
+            <div class="ui left aligned large header">
+            <%= coin.coinName %> (<%= coin.coinSym %>)
+        </div>
+            <table class="ui table">
+          <thead>
+            <tr><th colspan="3">
+              ICO Price
+            </th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td> USD </br>
+                   <%= coin.icousdValue %>
+              </td>
+              <td> BTC </br>
+              <%= coin.icobtcValue %></td>
+              <td> ETH </br>
+              <%= coin.icoethValue %></td>
+            </tr>
+          </tbody>
+        </table>
+        
+            <table class="ui table">
+              <thead>
+                <tr><th colspan="2">
+                  Project Details
+                </th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td> Project Name </td>
+                  <td> 
+                  <%= coin.coinName %></td>
+                </tr>
+                <tr>
+                  <td> Project Details: </td>
+                  <td> 
+                    <%= coin.coinDescription %>
+                  </td>
+                </tr>                
+              </tbody>
+            </table>
+        
+        </div>
+        
+        <div class="two wide column"></div>
+    </div>
+    </div>
+  
+
+<% include partials/footer %>
