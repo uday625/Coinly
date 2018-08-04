@@ -1,0 +1,53 @@
+
+<% include partials/header %>
+
+
+    <h2 align="center"> Edit COIN PAGE</h2>
+
+  <form class="ui form" action="/coins/<%=coin._id %>?_method=PUT" method="POST">
+    <div class="ui sixteen wide grid">
+      <div class="two wide column"></div>
+      <div class="eight wide centered column">
+            <form class="ui form centered">
+              <div class="two fields">
+                  <div class="eight wide field">
+                    <label>Coin Name</label>
+                    <input type="text" name="coin[coinName]" value="<%= coin.coinName %>" required="true">
+                  </div>
+                  <div class=" eight wide field">
+                    <label>Coin Symbol</label>
+                    <input type="text" name="coin[coinSym]" value="<%= coin.coinSym %>">
+                  </div>
+              </div>
+
+                <div class="three fields">
+                  <div class="six wide field">
+                    <label>ICO Price(USD)</label>
+                    <input type="text" name="coin[icousdValue]" value="<%= coin.icousdValue %>">
+                  </div>
+                  <div class=" six wide field">
+                    <label>ICO Price(BTC)</label>
+                    <input type="text" name="coin[icobtcValue]" value="<%= coin.icobtcValue %>">
+                  </div>
+                  <div class=" four wide field">
+                    <label>ICO Price(ETH)</label>
+                    <input type="text" name="coin[icoethValue]" value="<%= coin.icoethValue %>">
+                  </div>                  
+              </div>
+                <div class="field">
+                <label>Coin Description</label>
+                <textarea rows="2" name="coin[coinDescription]" placeholder="Project Description" ><%= coin.coinDescription %></textarea>
+                </div>
+                <div align="center">
+                                 <button class="ui green button" type="submit">Reset</button>
+              <button class="ui primary button" type="submit">Submit</button> 
+                </div>    
+
+            </form>            
+       </div>
+      </div>
+      <div class="six wide column"></div>
+    </div>
+  </form>
+
+<% include partials/footer %>

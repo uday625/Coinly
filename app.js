@@ -109,36 +109,20 @@ Coin.find({}, (err,coins)=>{
     // }); 
 
 
-// "/" home page call
+// INDEX PAGE
 app.get("/", function(req,res){
     res.render("index");
 });
 
-
-// "/coins" display all coins
+// DISPLAY ALL COIN
 app.get("/coins", function(req,res){
     res.render("coins",{coinDetails:coinDetails});
 });
 
-
+// CREATE NEW COIN 
 app.post("/coins",function(req,res){
     
-    
     req.body.coin.body = req.sanitize(req.body.coin.body);
-    
-    // var coinName    = req.body.coinName;
-    //  var coinSym     = req.body.coinSym;
-    //  var icobtcValue = req.body.icobtcValue;
-    //  var icoethValue = req.body.icoethValue;
-    //  var icousdValue = req.body.icousdValue;
-
-    // var newCoin = {
-    //                 coinName    : coinName,
-    //                 coinSym     : coinSym,
-    //                 icobtcValue : icobtcValue,
-    //                 icoethValue : icoethValue,
-    //                 icousdValue : icousdValue,
-    // };
     
     Coin.create(req.body.coin,function(err,newlyCreated){
         if(err){
@@ -148,13 +132,49 @@ app.post("/coins",function(req,res){
         }
     });
     
-    
 });
 
 
 //NEW -GET form to intake data to route to POST method
 app.get("/coins/new", function(req, res){
     res.render("new");
+});
+
+//EDIT ROUTE
+app.get("/coins/:id/edit", (req,res)=>{
+    Coin.findById(req.params.id,(err,foundCoin)=>{
+        if(err){
+            res.render("/coins");
+        }else{
+            res.render("edit",{coin:foundCoin});
+        }
+    });
+    
+});
+
+//UPDATE ROUTE
+app.put("/coins/:id",(req,res)=>{
+    req.body.coin.body = req.sanitize(req.body.coin.body);
+    
+    Coin.findByIdAndUpdate(req.params.id, req.body.coin, (err,updatedCoin)=>{
+        if(err){
+            res.redirect("/coins");
+        }else{
+            res.redirect("/coins/" + req.params.id);
+        }
+        
+    });
+});
+
+//DELETE ROUTE
+app.delete("/coins/:id", (req,res)=>{
+   Coin.findByIdAndRemove(req.params.id, (err)=>{
+       if(err){
+           res.redirect("/coins");
+       }else{
+           res.redirect("/coins");
+       }
+   });
 });
 
 //SHOW PAGE - Show a particular coin 
@@ -170,12 +190,12 @@ app.get("/coins/:id", (req,res)=>{
 });
 
 
-
-// "/results" call page
+// ANY OTHER PAGE
 app.get("*", function(req,res){
    res.send("Page not Found") ;
 });
 
+// LIST PORT AND IP
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Coinly App has started...");
 });

@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-        <div class="ui sixteen wide centered grid">
+  <div class="ui sixteen wide centered grid">
             <div class="two wide column"></div>
 
             <div class="twelve wide column">
@@ -46,12 +46,16 @@
                 </tr>                
               </tbody>
             </table>
+            <a class="ui orange basic button" href="/blogs/<%= coin._id  %>/edit"> Edit</a>
+            <form id="delete" class="ui form" action ="/coins/<%=coin._id %>?_method=DELETE" method="post">
+                <button class="ui red basic button"> Delete </button>
+            </form>
         
         </div>
         
         <div class="two wide column"></div>
     </div>
-    </div>
+
   
 
 <% include partials/footer %>
