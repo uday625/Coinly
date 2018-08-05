@@ -1,5 +1,10 @@
 body {
-  background-color: #d4d4d5;
+  background-color: #FAFAFA;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #topgridMargin {

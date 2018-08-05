@@ -1,7 +1,19 @@
 
 <% include partials/header %>
 
+          
+    <!-- Data Table -->        
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"> </script> 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"> </script> 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"> </script> 
 
+  <script>
+    
+    $(document).ready(function() {
+    $('#example').DataTable();
+    });
+    
+  </script>
     
     
     <div id="topgridMargin" class="ui sixteen wide centered grid">
@@ -18,24 +30,13 @@
           </div>
           
           <div class="ui raised segment">
-                  <table class="ui table">
+                  <table class="ui very basic table" id="example" style="width:100%">
                     <thead>
-                      
-                      <tr>
-                        <th colspan="2">Project</th>
-                        <th colspan="3">ICO Price</th>
-                        <th colspan="3">Market Price</th>
-                        <th colspan="3">ICO Return</th>
-                      </tr>            
                       <tr>
                           <th>Project</th>
-                          <th >Symbol</th>
-                          <th>BTC ICO Price</th>
-                          <th>ETH ICO Price</th>
-                          <th>USD ICO Price</th>
-                          <th>BTC Current Price</th>
-                          <th>ETH Current Price</th>
-                          <th>USD Current Price</th>
+                          <th>Market Cap</th>
+                          <th>Current Price</th>
+                          <th>ICO Price</th>
                           <th>BTC Return</th>
                           <th>ETH Return</th>
                           <th>USD Return</th>
@@ -46,14 +47,16 @@
                   <% coinDetails.forEach(function(coin){ %>    
                     
                           <tr>
-                              <td ><a href="/coins/<%= coin._id %>"><%= coin.coinName %></a></td>
-                              <td ><%= coin.coinSym %></td>
+                              <td >
+                                  <div class="ui center floated header">
+                                    <img class="logo" src ="<%=coin.coinSym %>">
+                                  </div>
+                                  <a href="/coins/<%= coin._id %>"><%= coin.coinName %></a></br>
+                                  <%= coin.coinSym %>
+                              </td>
                               <td><%= coin.icobtcValue %></td>
                               <td><%= coin.icoethValue %></td>
                               <td><%= coin.icousdValue %></td>
-                              <td><%= coin.btcValue %></td>
-                              <td><%= coin.ethValue %> </td>
-                              <td><%= coin.usdValue %> </td>
                               <td><%= (coin.btcValue/coin.icobtcValue).toFixed(2) %>X </td>
                               <td><%= (coin.ethValue/coin.icoethValue).toFixed(2) %>X </td>
                               <td><%= (coin.usdValue/coin.icousdValue).toFixed(2) %>X </td>
