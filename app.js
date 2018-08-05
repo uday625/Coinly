@@ -1,22 +1,49 @@
 
 //Require all the packages
-var express             = require("express");
-var ejs                 = require("ejs");
-var methodOverride      = require("method-override");
-var bodyParser          = require("body-parser");
-var request             = require("request");
-var mongoose            = require("mongoose");
-var expressSanitizer    = require("express-sanitizer");
-var app                 = new express();
+var express                 = require("express");
+var ejs                     = require("ejs");
+var methodOverride          = require("method-override");
+var bodyParser              = require("body-parser");
+var request                 = require("request");
+var mongoose                = require("mongoose");
+var expressSanitizer        = require("express-sanitizer");
+var LocalStrategy           = require("passport-local");
+var passportLocalMongoose   = require("passport-local-mongoose");
+var passport                = require("passport");
+var User                    = require("./models/user");
 
 
 mongoose.connect("mongodb://localhost/Coins");
+
+var app                 = new express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
+
+//PASSPORT CONFIGURATION
+
+app.use(require("express-session")({
+   secret: "Durga Puja 2018 will be awesome!", 
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req,res,next)=>{
+    res.locals.currentUser = req.user;
+    next();
+});
+
+
 
 //Create the db schema
 var coinSchema = new mongoose.Schema({
@@ -136,7 +163,7 @@ app.post("/coins",function(req,res){
 
 
 //NEW -GET form to intake data to route to POST method
-app.get("/coins/new", function(req, res){
+app.get("/coins/new", isLoggedIn, function(req, res){
     res.render("new");
 });
 
@@ -188,6 +215,64 @@ app.get("/coins/:id", (req,res)=>{
         }
     });
 });
+
+
+
+//===============
+// AUTH ROUTES 
+//===============
+
+//show register form
+app.get("/register", isLoggedIn, (req,res)=>{
+    res.render("register");
+});
+
+// handle sign up logic
+app.post("/register",(req,res)=>{
+    
+    var newUser = new User({username: req.body.username});
+    
+    User.register(newUser, req.body.password,(err,user)=>{
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req,res,()=>{
+            res.redirect("/coins");
+        });
+    });
+    
+});
+
+
+//show login form
+app.get("/login", (req,res)=>{
+    res.render("login");
+});
+//handling login logic
+
+//app.post("/login", middleware, callback);
+app.post("/login", passport.authenticate("local", 
+        {
+                successRedirect:"/coins", 
+                failureRedirect:"/login"
+        }),(req, res)=>{
+    
+});
+
+//logout route
+app.get("/logout", (req,res)=>{
+    req.logout();
+    res.redirect("/");
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
 
 
 // ANY OTHER PAGE

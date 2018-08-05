@@ -2,52 +2,60 @@
 <% include partials/header %>
 
 
-    <h2 align="center"> NEW COIN PAGE</h2>
 
-  <form class="ui form" action="/coins" method="POST">
-    <div class="ui sixteen wide grid">
-      <div class="two wide column"></div>
+
+    <div id="topgridMargin"  class="ui sixteen wide grid">
+      <div class="four wide column"></div>
       <div class="eight wide centered column">
-            <form class="ui form centered">
-              <div class="two fields">
-                  <div class="eight wide field">
-                    <label>Coin Name</label>
-                    <input type="text" name="coin[coinName]" placeholder="Coin Name" required="true">
-                  </div>
-                  <div class=" eight wide field">
-                    <label>Coin Symbol</label>
-                    <input type="text" name="coin[coinSym]" placeholder="Coin Symbol">
-                  </div>
+        <h3 class="ui center aligned header">
+            <div class="ui red content">
+              Log New ICO Details
+            </div>
+        </h3>  
+          
+        <div class="ui segment" >
+          <form class="ui form centered" action="/coins" method="POST">
+            <div class="two fields">
+              <div class="eight wide field">
+                <label>Coin Name</label>
+                <input type="text" name="coin[coinName]" placeholder="Coin Name" required="true">
               </div>
-
-                <div class="three fields">
-                  <div class="six wide field">
-                    <label>ICO Price(USD)</label>
-                    <input type="text" name="coin[icousdValue]" placeholder="ICO Price USD">
-                  </div>
-                  <div class=" six wide field">
-                    <label>ICO Price(BTC)</label>
-                    <input type="text" name="coin[icobtcValue]" placeholder="ICO Price BTC">
-                  </div>
-                  <div class=" four wide field">
-                    <label>ICO Price(ETH)</label>
-                    <input type="text" name="coin[icoethValue]" placeholder="ICO Price ETH">
-                  </div>                  
+              <div class=" eight wide field">
+                <label>Coin Symbol</label>
+                <input type="text" name="coin[coinSym]" placeholder="Coin Symbol" required="true">
               </div>
-                <div class="field">
-                <label>Coin Description</label>
-                <textarea rows="2" name="coin[coinDescription]" placeholder="Project Description" ></textarea>
-                </div>
-                <div align="center">
-                                 <button class="ui green button" type="submit">Reset</button>
+          </div>
+            <div class="three fields">
+              <div class="six wide field">
+                <label>ICO Price(USD)</label>
+                <input type="text" name="coin[icousdValue]" placeholder="ICO Price USD" required="true">
+              </div>
+              <div class=" six wide field">
+                <label>ICO Price(BTC)</label>
+                <input type="text" name="coin[icobtcValue]" placeholder="ICO Price BTC" required="true">
+              </div>
+              <div class=" four wide field">
+                <label>ICO Price(ETH)</label>
+                <input type="text" name="coin[icoethValue]" placeholder="ICO Price ETH" required="true">
+              </div>                  
+          </div>
+            <div class="field">
+            <label>Coin Description</label>
+            <textarea rows="2" name="coin[coinDescription]" placeholder="Project Description" ></textarea>
+            </div>
+            <div align="center">
+              <button class="ui green button" type="submit">Reset</button>
               <button class="ui primary button" type="submit">Submit</button> 
-                </div>    
-
-            </form>            
+            </div>    
+        
+          </form> 
+        </div>
+        
        </div>
-      </div>
-      <div class="six wide column"></div>
+     
+      <div class="four wide column"></div>
+      
     </div>
-  </form>
+
 
 <% include partials/footer %>

@@ -1,0 +1,41 @@
+<% include partials/header %>
+
+
+<div class="page-login">
+  <div class="ui centered grid container">
+    <div class="nine wide column">
+      <div class="ui icon info message">
+          <i class="lock icon"></i>
+          <div class="content">
+            <div class="header">
+              USER LOGIN!
+            </div>
+            <p>Please login to proceed!</p>
+          </div>
+        </div>
+      <div class="ui fluid card">
+        <div class="content">
+        <form class="ui form" action="/login" method="POST">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="User">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+          <button class="ui primary labeled icon button" type="submit">
+            <i class="unlock alternate icon"></i>
+            Login
+          </button>
+        </form>
+        </div>
+        <div class="ui bottom attached info message">
+          coming soon!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/footer %>

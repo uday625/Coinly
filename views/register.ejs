@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+
+<div class="page-login">
+  <div class="ui centered grid container">
+    <div class="nine wide column">
+
+      <div class="ui fluid card">
+        
+        <div class="ui attached icon positive message">
+          <i class="user icon"></i>
+          <div class="content">
+            <div class="header">
+              Welcome to CCOE Signup page!
+            </div>
+            <p>Fill out the form below to sign-up for a new account</p>
+          </div>
+        </div>
+          
+        <div class="content">
+        <form class="ui form" action="/register" method="POST">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="User">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+          <button class="ui positive labeled icon button" type="submit">
+            <i class="unlock alternate icon"></i>
+            Register
+          </button>
+        </form>
+        </div>
+        <div class="ui bottom attached positive message">
+          <i class="icon help"></i>
+          Already have a userid? <a href="/login">Login here</a> instead.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/footer %>

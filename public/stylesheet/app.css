@@ -1,5 +1,9 @@
-i.icon{
-    font-size: 1.2em;
+body {
+  background-color: #ECF0F1;
+}
+
+#topgridMargin {
+    margin-top: 4.0em;
 }
 
 .container.main{
@@ -10,6 +14,15 @@ i.icon{
     margin-top: 5.0em ;
 }
 
-#delete{
-    display:inline;
+.page-home {
+  margin-top: 350px;
+}
+
+.page-login {
+  margin-top: 190px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
 }
