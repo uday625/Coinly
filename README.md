@@ -1,0 +1,4 @@
+# Coinly
+Coinly
+
+Added readme
